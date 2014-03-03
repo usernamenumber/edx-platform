@@ -89,6 +89,9 @@ FEATURES = {
 
     # Allow creating courses with non-ascii characters in the course id
     'ALLOW_UNICODE_COURSE_ID': False,
+
+    # Prevent concurrent logins per user
+    'PREVENT_CONCURRENT_LOGINS': False,
 }
 ENABLE_JASMINE = False
 
