@@ -6,3 +6,4 @@ Extending the edX Platform
     :maxdepth: 2
 
     extending.rst
+    javascript
