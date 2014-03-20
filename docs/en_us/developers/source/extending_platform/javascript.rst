@@ -1,8 +1,8 @@
 
-.. _Options for Extending the edX Platform:
+.. _Custom JavaScript Display and Grading:
 
 ##########################################
-Options for Extending the edX Platform
+Custom JavaScript Display and Grading
 ##########################################
 
 There are several options for extending the Open edX Platform to provide useful and innovate educational content in your courses.

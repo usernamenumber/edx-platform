@@ -15,6 +15,7 @@ Contents:
     :maxdepth: 2
 
     overview.rst
+    extending_platform/index
 
 APIs
 -----
