@@ -320,13 +320,9 @@ class LTIModule(LTIFields, XModule):
         This value may change for a particular resource_link_id / user_id  from one launch to the next.
         The TP should only retain the most recent value for this field for a particular resource_link_id / user_id.
         This field is generally optional, but is required for grading.
-
-        context_id is - is an opaque identifier that uniquely identifies the context that contains
-        the link being launched.
-        lti_id should be context_id by meaning.
         """
-        return "{id}:{resource_link}:{user_id}".format(
-            id=urllib.quote(self.lti_id),
+        return "{context}:{resource_link}:{user_id}".format(
+            context=urllib.quote(self.context_id),
             resource_link=urllib.quote(self.get_resource_link_id()),
             user_id=urllib.quote(self.get_user_id())
         )
@@ -338,6 +334,14 @@ class LTIModule(LTIFields, XModule):
         course_location = CourseDescriptor.id_to_location(self.course_id)
         course = self.descriptor.runtime.modulestore.get_item(course_location)
         return course
+
+    @property
+    def context_id(self):
+        """
+        Return opaque identifier that uniquely identifies the context (e.g., a course)
+        that contains the link being launched.
+        """
+        return self.course_id
 
     @property
     def role(self):
@@ -379,6 +383,7 @@ class LTIModule(LTIFields, XModule):
             u'resource_link_id': self.get_resource_link_id(),
             u'lis_result_sourcedid': self.get_lis_result_sourcedid(),
 
+            u'context_id': self.context_id,
         }
 
         if self.has_score:
