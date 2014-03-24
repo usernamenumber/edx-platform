@@ -1,0 +1,135 @@
+.. _Data_Czar:
+
+#############################################
+Data Czar Selection and Responsibilities
+#############################################
+
+A data czar is the single representative at a partner institution who has the credentials to download and decrypt edX data packages. The data czar is responsible for transferring data securely to researchers after it is received. At each partner institution, the data czar is the primary point of contact for information about edX data. 
+
+* :ref:`Skills_Experience_Data_Czar`
+
+* :ref:`Getting_Credentials_Data_Czar`
+
+* :ref:`Resources_Information`
+
+After a data czar receives a data package, a team of additional contributors work with the data:
+
+* Database administrators work with the SQL and NoSQL data files and write queries on the data.
+
+* Statisticians and data analysts mine the data.
+
+* Educational researchers pose questions and interpret the results of queries on the data.
+
+See :ref:`Skills_Experience_Contributors`.
+
+Every individual who is permitted to access the data should be trained in, and comply with, secure data handling protocols. 
+
+.. _Skills_Experience_Data_Czar:
+
+**************************************
+Skills and Experience of Data Czars
+**************************************
+
+The individuals who are selected to be data czars typically have experience working with sensitive student data, are familiar with encryption/decryption and file transfer protocols, and can sanity check, copy, move, and store large files. 
+
+=====================
+General Skills
+=====================
+
+- Ability to set up and manage data access.
+
+- Familiarity with general data privacy and security best practices.
+
+- Experience with management of sensitive student data.
+
+- Familiarity with the requirements of the U.S. Family Educational Rights and Privacy Act (FERPA).
+
+=====================
+Technical Skills
+=====================
+
+- Familiarity with PGP and GPG encryption and decryption.
+
+- Ability to download large files from Amazon Web Service (AWS) Simple Storage Service (S3).
+
+- Experience working with archive files in TAR, GZ, and ZIP formats.
+
+- Familiarity with SQL and noSQL (Mongo) databases.
+
+- Familiarity with CSV and JSON file formats. 
+
+- Experience copying, moving, and storing large files in bulk.
+
+- Ability to sanity check the data and files received and distributed.
+
+.. _Getting_Credentials_Data_Czar:
+
+**************************************
+Getting Credentials for Data Czars
+**************************************
+
+The designated data czar at each institution works with an edX Program Manager to set up a public/private key pair for GNU Privacy Guard (GNUPG). 
+
+* The edX Analytics team creates an account on the Amazon Web Service (AWS) Simple Storage Service (S3), and provides the Program Manager with the public key for account access. 
+
+* When a data package is available, the data czar downloads it from S3 and decrypts it using the private key.
+
+For detailed information on this procedure, see the *How Do I get my Research Data Package?* article on the Open edX Analytics wiki_.
+
+.. _wiki: http://edx-wiki.atlassian.net/wiki/display/OA/Open+edX+Analytics+Home
+
+.. _Resources_Information:
+
+**************************************
+Resources and Information
+**************************************
+
+The edX Analytics team adds every data czar to a Google Group and mailing list_ called course-data. 
+
+.. _list: http://groups.google.com/a/edx.org/forum/#!forum/course-data
+
+EdX also hosts an Open edX Analytics wiki_ that is available to the public.
+
+.. _wiki: http://edx-wiki.atlassian.net/wiki/display/OA/Open+edX+Analytics+Home
+
+.. _Skills_Experience_Contributors:
+
+*************************************************
+Skills and Experience of Other Contributors
+*************************************************
+
+In addition to the data czar, each partner institution assembles a team of contributors to their reasearch projects. This team can include database administrators, software engineers, data specialists, and educational researchers. The team can be large or small, but collectively its members need to be able to work with SQL and NoSQL databases, write queries, and convert the data from raw formats into standard research packages, such as CSV files, spreadsheets, or other desired formats.
+
+=====================
+General Skills
+=====================
+
+- Attention to detail.
+
+- Experience setting up and testing a data conversion pipeline.
+
+- Ability to identify interesting features in a complex and rich data set.
+
+- Familiarity with anonymization and obfuscation techniques.
+
+- Familiarity with data privacy and security best practices.
+
+- Experience managing sensitive student data.
+
+- Familiarity with FERPA.
+
+=====================
+Technical Skills
+=====================
+
+- Familiarity with CSV, MongoDB, JSON, Unicode, XML, HTML.
+
+- Ability to set up, query, and administer both SQL and noSQL databases. 
+
+- Experience with console/bash scripts.
+
+- Basic or advanced scripting (for example, using Python or Ruby) to convert, join, and aggregate data from different data sources, handle JSON serialization, and Unicode specificities.
+
+- Experience with data mining and data aggregation across a rich, varied data set.
+
+- Ability to write parsing scripts that properly handle JSON serialization and Unicode.

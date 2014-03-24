@@ -10,6 +10,8 @@ Change Log
 
    * - Date
      - Change
+   * - 28 Mar 2014
+     - Added the :ref:'Data_Czar' chapter.
    * - 19 Mar 2014
      - Provided alternative formatting for the examples in the :ref:`Discussion Forums Data` chapter.
    * - 13 Mar 2014
