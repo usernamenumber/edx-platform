@@ -22,7 +22,7 @@ After a data czar receives a data package, a team of additional contributors wor
 
 See :ref:`Skills_Experience_Contributors`.
 
-Every individual who is permitted to access the data should be trained in, and comply with, secure data handling protocols. 
+Every individual who is permitted to access the data should be trained in, and comply with, your institution's secure data handling protocols. 
 
 .. _Skills_Experience_Data_Czar:
 
@@ -30,7 +30,7 @@ Every individual who is permitted to access the data should be trained in, and c
 Skills and Experience of Data Czars
 **************************************
 
-The individuals who are selected to be data czars typically have experience working with sensitive student data, are familiar with encryption/decryption and file transfer protocols, and can sanity check, copy, move, and store large files. 
+The individuals who are selected by a partner institution to be edX data czars typically have experience working with sensitive student data, are familiar with encryption/decryption and file transfer protocols, and can sanity check, copy, move, and store large files. 
 
 =====================
 General Skills
@@ -38,7 +38,7 @@ General Skills
 
 - Ability to set up and manage data access.
 
-- Familiarity with general data privacy and security best practices.
+- Knowledgeable of general data privacy and security best practices.
 
 - Experience with management of sensitive student data.
 
