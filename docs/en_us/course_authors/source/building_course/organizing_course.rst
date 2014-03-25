@@ -264,7 +264,9 @@ Click the arrow next to a child component name to expand that component to see i
 .. image:: ../Images/child_component_a.png
  :alt: Image of an expanded child component
 
-.. note:: In this release, parent and child components are read-only in Studio. You set up components and their relationships to each other in XML. You can then import the course into Studio and verify that your course components are organized as you intended.
+.. note:: In this release, you cannot create parent and child components in Studio. You set up components and their relationships to each other in XML. You can then import the course into Studio, edit the child components, and verify that your course components are organized as you intended.
+
+If the unit containing the child components is private or in draft, you can edit the child components just as you can any other component.
 
 
 ======================================
@@ -277,38 +279,37 @@ The XML for the unit is:
 
 .. code-block:: xml
 
- <vertical display_name="Unit 1">
-  <html url_name="6a5cf0ea41a54b209e0815147896d1b2"/>
-  <vertical url_name="131a499ddaa3474194c1aa2eced34455"/>
- </vertical>
+    <vertical display_name="Unit 1">
+        <html url_name="6a5cf0ea41a54b209e0815147896d1b2"/>
+        <vertical url_name="131a499ddaa3474194c1aa2eced34455"/>
+    </vertical>
 
 The ``<vertical url_name="131a499ddaa3474194c1aa2eced34455"/>`` element above references the parent component file that contains the child components:
  
 .. code-block:: xml
 
- <vertical display_name="Parent Component">
-  <vertical url_name="2758bbc495dd40d59050da15b40bd9a5"/>
-  <vertical url_name="c5c8b27c2c5546e784432f3b2b6cf2ea"/>
- </vertical>
+    <vertical display_name="Parent Component">
+        <vertical url_name="2758bbc495dd40d59050da15b40bd9a5"/>
+        <vertical url_name="c5c8b27c2c5546e784432f3b2b6cf2ea"/>
+    </vertical>
 
 The two verticals referenced by the parent component refer to the child components, which contain the actual content of your course:
 
 .. code-block:: xml
 
- <vertical display_name="Child Component A">
-  <html url_name="4471618afafb45bfb86cbe511973e225"/>
-  <video url_name="fbd800d0bdbd4cb69ac70c47c9f699e1"/>
- </vertical>
+    <vertical display_name="Child Component A">
+        <html url_name="4471618afafb45bfb86cbe511973e225"/>
+        <video url_name="fbd800d0bdbd4cb69ac70c47c9f699e1"/>
+    </vertical>
 
 .. code-block:: xml
 
- <vertical display_name="Child Component B">
-  <html url_name="dd6ef295fda74a639842e1a49c66b2c7"/>
-  <problem url_name="b40ecbe4ed1b4280ae93e2a158edae6f"/>
- </vertical>
+    <vertical display_name="Child Component B">
+        <html url_name="dd6ef295fda74a639842e1a49c66b2c7"/>
+        <problem url_name="b40ecbe4ed1b4280ae93e2a158edae6f"/>
+    </vertical>
 
 Theoretically, there is no limit to the levels of component nesting you can use in your course.
-
 
 
 ======================================
