@@ -15,8 +15,9 @@ integrated into the edX grading system.
 
 Course staff should see `documentation on using custom JavaScript <http://edx.re
 adthedocs.org/projects/ca/en/latest/problems_tools/advanced_problems.html
-#custom-javascript-display-and-grading>`_ in *Building and Running an edX
-Course*.
+#custom-javascript-display-and-grading>`_ and `Establing a Grading Policy <http:
+//edx.readthedocs.org/projects/ca/en/latest/building_course/establish_grading_po
+licy.html>`_ in *Building and Running an edX Course*.
 
 The rest of this section provides more information for developers who are creating JavaScript applications for courses on the edX Platform.
 
@@ -222,7 +223,7 @@ jsinput attributes
      - The function in your JavaScript application that returns the state of the objects. [NOT CLEAR TO ME WHY YOU NEED BOTH getGrade and setState]
      - ``WebGLDemo.getState``
    * - set_statefun
-     - The function in your JavaScript application that saves the state of the objects. 
+     - The function in your JavaScript application that saves the state of the objects.
      - ``WebGLDemo.setState``
    * - width
      - The width of the IFrame in which your JavaScript application will be displayed, in pixels.
@@ -234,6 +235,5 @@ jsinput attributes
      - The name of the HTML file containing your JavaScript application that will be loaded in the IFrame.
      - /static/webGLDemo.html
    * - sop
-     - The same-origin policy (SOP), meaning that all elements have the same protocol, host, and port. To bypass the SOP,
-     set to ``true``.
+     - The same-origin policy (SOP), meaning that all elements have the same protocol, host, and port. To bypass the SOP, set to ``true``.
      - false
