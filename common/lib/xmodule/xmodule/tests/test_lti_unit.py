@@ -264,7 +264,7 @@ class LTIModuleTest(LogicTest):
     def test_lis_result_sourcedid(self):
         with patch('xmodule.lti_module.LTIModule.id', new_callable=PropertyMock) as mock_id:
             mock_id.return_value = self.module_id
-            expected_sourcedId = u':'.join(urllib.quote(i) for i in (self.lti_id, self.module_id, self.user_id))
+            expected_sourcedId = u':'.join(urllib.quote(i) for i in (self.xmodule.context_id, self.module_id, self.user_id))
             real_lis_result_sourcedid = self.xmodule.get_lis_result_sourcedid()
             self.assertEqual(real_lis_result_sourcedid, expected_sourcedId)
 
@@ -403,4 +403,8 @@ class LTIModuleTest(LogicTest):
         self.xmodule.graded = False
         self.assertEqual(self.xmodule.max_score(), 100.0)
 
-
+    def test_context_id(self):
+        """
+        Tests that LTI parameter context_id is equals to course_id.
+        """
+        self.assertEqual(self.system.course_id, self.xmodule.context_id)
