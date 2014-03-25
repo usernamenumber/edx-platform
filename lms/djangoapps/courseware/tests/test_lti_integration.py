@@ -28,12 +28,14 @@ class TestLTI(BaseTestXmodule):
         mocked_decoded_signature = u'my_signature='
 
         lti_id = self.item_descriptor.lti_id
-        module_id = unicode(urllib.quote(self.item_descriptor.id))
+        module_id = self.item_descriptor.id
         user_id = unicode(self.item_descriptor.xmodule_runtime.anonymous_student_id)
+        hostname = self.item_descriptor.xmodule_runtime.hostname
+        resource_link_id = unicode(urllib.quote('{}/{}'.format(module_id, hostname)))
 
         sourcedId = "{id}:{resource_link}:{user_id}".format(
             id=urllib.quote(lti_id),
-            resource_link=urllib.quote(module_id),
+            resource_link=urllib.quote(resource_link_id),
             user_id=urllib.quote(user_id)
         )
 
@@ -49,7 +51,7 @@ class TestLTI(BaseTestXmodule):
             u'lti_version': 'LTI-1p0',
             u'roles': u'Student',
 
-            u'resource_link_id': module_id,
+            u'resource_link_id': resource_link_id,
             u'lis_result_sourcedid': sourcedId,
 
             u'oauth_nonce': mocked_nonce,
