@@ -42,8 +42,6 @@ The following documentation is available:
 edX Studio
 *************
 
-* A/B tests configured in XML and imported into Studio can now be viewed in the course outline. (STUD-1403)
-
 * In the HTML editor, when you entered a ``<style>`` element, the editor sometimes stopped responding. This problem is resolved. (STUD-1434) 
 
 
@@ -69,7 +67,7 @@ edX Learning Management System
 edX Analytics
 ***************************************
 
-* A problem that prevented data exports of courses with Unicode characters in the organization name is resolved. (AN-657)
+* A problem that prevented the delivery of data research packages of courses with Unicode characters in the organization name is resolved. (AN-657)
 
 
 ***************************************
