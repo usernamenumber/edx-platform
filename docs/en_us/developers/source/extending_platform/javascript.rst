@@ -15,7 +15,7 @@ integrated into the edX grading system.
 
 Course staff should see `documentation on using custom JavaScript <http://edx.re
 adthedocs.org/projects/ca/en/latest/problems_tools/advanced_problems.html
-#custom-javascript-display-and-grading>`_ and `Establing a Grading Policy <http:
+#custom-javascript-display-and-grading>`_ and `Establishing a Grading Policy <http:
 //edx.readthedocs.org/projects/ca/en/latest/building_course/establish_grading_po
 licy.html>`_ in *Building and Running an edX Course*.
 
@@ -46,7 +46,7 @@ The following information uses this example to explain what developers need to k
 Required JavaScript Functions
 *******************************
 
-To enable grading of students' interactions, your JavaScript applicaton must contain three global methods:
+To enable grading of students' interactions, your JavaScript application must contain three global methods:
 
 * ``getState``
 * ``setState``
