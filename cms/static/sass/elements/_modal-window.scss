@@ -7,7 +7,7 @@
 
   // modal-window backdrop covers the window
   .wrapper-modal-window {
-    @extend %ui-depth5;
+    @extend %ui-depth4;
     @include transition(all $tmg-f2 ease-in-out);
     position: absolute;
     top: 0;
@@ -113,8 +113,8 @@
       transform: translate(-50%, 0);
       top: ($baseline*2);
       width: 65%;
-      min-width: ($baseline*33);
-      min-height: ($baseline*27);
+      height: auto;
+      min-width: ($baseline*30);
 
       &.modal-editor {
 

@@ -3,7 +3,8 @@
   .editor-tabs {
 
     .advanced-toggle {
-      @include white-button;
+      @extend %btn-secondary-gray;
+
       height: auto;
       margin-top: -4px;
       padding: 3px 9px;
@@ -19,6 +20,7 @@
 
         &:hover, &:focus {
           box-shadow: 0 0 0 0 !important;
+          background-color: $white;
         }
       }
     }
