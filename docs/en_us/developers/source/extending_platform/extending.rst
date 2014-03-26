@@ -8,11 +8,7 @@ Options for Extending the edX Platform
 There are several options for extending the Open edX Platform to provide useful
 and innovative educational content in your courses.
 
-This section of the developer's documentation explains the different ways to
-extend the platform and provides details.
-
-The following table shows the different ways to extend the platform. Click the
-name of the extension type in the column headers to go to more details.
+This section of the developers' documentation lists and explains the different ways to extend the platform, starting with the following table. Click the name of the extension type in the column header for more information.
 
 .. list-table::
    :widths: 20 16 16 16 16 16
@@ -61,8 +57,8 @@ name of the extension type in the column headers to go to more details.
      - Yes
      - Yes
    * - Mobile enabled
-     - Maybe
-     - Maybe
+     - Possibly
+     - Possibly
      - Yes
      - Yes
      - Yes
@@ -79,7 +75,7 @@ name of the extension type in the column headers to go to more details.
      - Yes
      - Yes
    * - Provision in Studio
-     - No (
+     - No
      - No
      - No
      - Yes

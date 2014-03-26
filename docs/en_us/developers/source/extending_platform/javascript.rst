@@ -19,7 +19,7 @@ adthedocs.org/projects/ca/en/latest/problems_tools/advanced_problems.html
 //edx.readthedocs.org/projects/ca/en/latest/building_course/establish_grading_po
 licy.html>`_ in *Building and Running an edX Course*.
 
-The rest of this section provides more information for developers who are creating JavaScript applications for courses on the edX Platform.
+The rest of this section provides more information for developers who are creating JavaScript applications for courses on the edX platform.
 
 .. note:: This section assumes proficiency with JavaScript and Python, and with how problems are constructed in edX Studio.  
 
@@ -43,7 +43,7 @@ You can `download files for that application <http://files.edx.org/JSInput.zip>`
 The following information uses this example to explain what developers need to know to embed their JavaScript applications in an edX course.
 
 *******************************
-Required JavaScript Methods
+Required JavaScript Functions
 *******************************
 
 To enable grading of students' interactions, your JavaScript applicaton must contain three global methods:
@@ -88,7 +88,7 @@ The following is the ``getState()`` function in the sample application:
 setState() Function
 ====================
 
-When a student clicks **Check** for the JavaScript problem, the application's state must be saved, so that the student can later return to the application and find it in the same state.
+When a student clicks **Check** for the JavaScript problem, the application's state must be saved so that the student can later return to the application and find it in the same state.
 
 Your application must contain a ``setState()`` function that is referenced in the XML problem specification and that saves the current state. 
 
@@ -144,7 +144,7 @@ The returned JSON string is then used by the Python code defined in the problem 
 Grading the Student Response
 *******************************
 
-The problem definition contains Python code that, when the studen clicks **Check**, parses the JSON string returned by your application's ``getGrade()`` function and determines if the student's submission is correct or not.
+The problem definition contains Python code that, when the student clicks **Check**, parses the JSON string returned by your application's ``getGrade()`` function and determines if the student's submission is correct or not.
 
 The following is the Python function ``vglcfn`` in the sample application:
 
@@ -213,7 +213,7 @@ jsinput attributes
    :widths: 10 80 10
    :header-rows: 1
 
-   * - Attribute name
+   * - Attribute
      - Description
      - Example
    * - gradefn
