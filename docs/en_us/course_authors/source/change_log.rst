@@ -10,6 +10,8 @@ Change Log
 
    * - Date
      - Change
+   * - 04/01/14
+     - Updated the :ref:`Add Pages` section to reflect ability to hide the course Wiki.
    * - 03/27/14
      - Updated the :ref:`Add Pages` section to reflect feature changes.
    * - 3/19/14
