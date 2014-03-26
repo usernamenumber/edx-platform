@@ -1,6 +1,7 @@
 """
 Instructor Views
 """
+from contextlib import contextmanager
 import csv
 import json
 import logging
@@ -1154,22 +1155,6 @@ def remove_user_from_role(request, username_or_email, role, group_title, event_n
     return '<font color="green">Removed {0} from {1}</font>'.format(user, group_title)
 
 
-class GradeList(list):
-    """
-    Create row handler that automatically extends
-    to create an index for whatever item is being
-    added.
-    """
-    def __setitem__(self, index, value):
-        """
-        Extend list to fit item into requested
-        position.
-        """
-        if index >= len(self):
-            self.extend([None] * (index + 1 - len(self)))
-        list.__setitem__(self, index, value)
-
-
 class GradeTable(object):
     """
     Keep track of grades, by student, for all graded assignment
@@ -1186,39 +1171,49 @@ class GradeTable(object):
     def __init__(self):
         self.components = OrderedDict()
         self.grades = {}
-        self.current_row = GradeList()
+        self.current_row = {}
 
     def add_grade_to_row(self, component, score):
-        """
-        Creates component if needed, and assigns score.
-        """
-        if not component in self.components:
-            self.components[component] = len(self.components)
-        self.current_row[self.components[component]] = score
+        """Creates component if needed, and assigns score
 
-    def start_row(self):
-        """
-        Create a new dynamically sizing GradeList to store components
-        """
-        self.current_row = GradeList()
+        Args:
+            component (str): Course component being graded
+            score (float): Score of student on component
 
-    def end_row(self, student_id):
+        Returns:
+           None
         """
-        Wrap up current row by assigning it to student id in
-        internal grades dict.
+        component_index = self.components.setdefault(component, len(self.components))
+        self.current_row[component_index] = score
+
+    @contextmanager
+    def add_row(self, student_id):
+        """Context management for a row of grades
+
+        Uses a new dictionary to get all grades of a specified student
+        and closes by adding that dict to the internal table.
+
+        Args:
+            student_id (str): Student id that is having grades set
+
         """
+        self.current_row = {}
+        yield self.add_grade_to_row
         self.grades[student_id] = self.current_row
 
     def get_grade(self, student_id):
-        """
-        Return list of grades for student; make sure length of
-        list is same as number of graded components.
+        """Retrieves padded list of grades for specified student
+
+        Args:
+            student_id (str): Student ID for desired grades
+
+        Returns:
+            list: Ordered list of grades for student
+
         """
         row = self.grades.get(student_id, [])
         ncomp = len(self.components)
-        if len(row) < ncomp:
-            row.extend([None] * (ncomp - len(row)))
-        return row
+        return [row.get(comp, None) for comp in range(ncomp)]
 
     def get_graded_components(self):
         """
@@ -1268,16 +1263,14 @@ def get_student_grade_summary_data(request, course, course_id, get_grades=True, 
         if get_grades:
             gradeset = student_grades(student, request, course, keep_raw_scores=get_raw_scores, use_offline=use_offline)
             log.debug('student={0}, gradeset={1}'.format(student, gradeset))
-            gtab.start_row()
-            if get_raw_scores:
-                # TODO (ichuang) encode Score as dict instead of as list, so score[0] -> score['earned']
-                for score in gradeset['raw_scores']:
-                    gtab.add_grade_to_row(score.section, (getattr(score, 'earned', '') or score[0]))
-            else:
-                for grade_item in gradeset['section_breakdown']:
-                    gtab.add_grade_to_row(grade_item['label'], grade_item['percent'])
-
-            gtab.end_row(student.id)
+            with gtab.add_row(student.id) as add_grade:
+                if get_raw_scores:
+                    # TODO (ichuang) encode Score as dict instead of as list, so score[0] -> score['earned']
+                    for score in gradeset['raw_scores']:
+                        add_grade(score.section, getattr(score, 'earned', score[0]))
+                else:
+                    for grade_item in gradeset['section_breakdown']:
+                        add_grade(grade_item['label'], grade_item['percent'])
             student.grades = gtab.get_grade(student.id)
 
         data.append(datarow)
