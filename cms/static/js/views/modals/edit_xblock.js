@@ -13,10 +13,9 @@ define(["jquery", "underscore", "gettext", "js/views/modals/base_modal",
                 "click .action-modes a": "changeMode"
             },
 
-            mode: 'editor-mode',
-
             initialize: function() {
                 this.template = _.template($("#edit-xblock-modal-tpl").text());
+                this.editorModeButtonTemplate = _.template($("#editor-mode-button-tpl").text());
             },
 
             /**
@@ -30,7 +29,7 @@ define(["jquery", "underscore", "gettext", "js/views/modals/base_modal",
                 this.xblockInfo = this.findXBlockInfo(xblockElement, rootXBlockInfo);
                 this.editOptions = options;
                 this.render({
-                    success: _.bind(this.show, this)
+                    success: _.bind(this.onRender, this)
                 });
             },
 
@@ -50,6 +49,16 @@ define(["jquery", "underscore", "gettext", "js/views/modals/base_modal",
                 editorView.render(options);
             },
 
+            onRender: function() {
+                var editorView = this.editorView;
+                if (editorView.getMetadataEditor()) {
+                    this.addModeButton('editor', gettext("Editor"));
+                    this.addModeButton('settings', gettext("Settings"));
+                    this.selectMode(editorView.mode);
+                }
+                this.show();
+            },
+
             changeMode: function(event) {
                 var parent = $(event.target.parentElement),
                     mode = parent.data('mode');
@@ -60,17 +69,12 @@ define(["jquery", "underscore", "gettext", "js/views/modals/base_modal",
             selectMode: function(mode) {
                 var showEditor = mode === 'editor',
                     editorView = this.editorView,
-                    editorModeButton,
-                    settingsModeButton;
+                    buttonSelector;
                 editorView.selectMode(mode);
-                editorModeButton = this.$('.editor-button');
-                settingsModeButton = this.$('.settings-button');
-                if (showEditor) {
-                    editorModeButton.addClass('is-set');
-                    settingsModeButton.removeClass('is-set');
-                } else {
-                    editorModeButton.removeClass('is-set');
-                    settingsModeButton.addClass('is-set');
+                this.$('.editor-modes a').removeClass('is-set');
+                if (mode) {
+                    buttonSelector = '.' + mode + '-button';
+                    this.$(buttonSelector).addClass('is-set');
                 }
             },
 
@@ -95,16 +99,44 @@ define(["jquery", "underscore", "gettext", "js/views/modals/base_modal",
                 });
             },
 
+            hide: function() {
+                BaseModal.prototype.hide.call(this);
+
+                // Completely clear the contents of the modal
+                this.undelegateEvents();
+                this.$el.html("");
+            },
+
             findXBlockInfo: function(xblockElement, defaultXBlockInfo) {
-                var xblockInfo = defaultXBlockInfo;
+                var xblockInfo = defaultXBlockInfo,
+                    locator,
+                    displayName,
+                    category;
                 if (xblockElement.length > 0) {
+                    locator = xblockElement.data('locator');
+                    displayName = xblockElement.data('display-name');
+                    category = xblockElement.data('category');
+                    if (!displayName) {
+                        displayName = category;
+                        if (!category) {
+                            displayName = gettext('Empty');
+                        }
+                    }
                     xblockInfo = new XBlockInfo({
-                        id: xblockElement.data('locator'),
-                        display_name: xblockElement.data('display-name'),
-                        category: xblockElement.data('category')
+                        id: locator,
+                        display_name: displayName,
+                        category: category
                     });
                 }
                 return xblockInfo;
+            },
+
+            addModeButton: function(mode, displayName) {
+                var buttonPanel = this.$('.editor-modes');
+                buttonPanel.append(this.editorModeButtonTemplate({
+                    mode: mode,
+                    displayName: displayName
+                }));
             }
         });
 

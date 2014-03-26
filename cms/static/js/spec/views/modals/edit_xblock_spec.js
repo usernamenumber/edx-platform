@@ -3,15 +3,17 @@ define(["jquery", "underscore", "js/spec/create_sinon", "js/views/modals/edit_xb
     function ($, _, create_sinon, EditXBlockModal, XBlockInfo) {
 
         describe("EditXBlockModal", function() {
-            var model, modal, respondWithMockXBlockEditorFragment, editXBlockModalTemplate,
+            var model, modal, respondWithMockXBlockEditorFragment, editXBlockModalTemplate, editorModeButtonTemplate,
                 feedbackTemplate, showModal, cancelModal;
 
             editXBlockModalTemplate = readFixtures('edit-xblock-modal.underscore');
+            editorModeButtonTemplate = readFixtures('editor-mode-button.underscore');
             feedbackTemplate = readFixtures('system-feedback.underscore');
 
             beforeEach(function () {
                 setFixtures('<div class="xblock" data-locator="mock-xblock" data-display-name="Mock XBlock"></div>');
                 appendSetFixtures($("<script>", { id: "edit-xblock-modal-tpl", type: "text/template" }).text(editXBlockModalTemplate));
+                appendSetFixtures($("<script>", { id: "editor-mode-button-tpl", type: "text/template" }).text(editorModeButtonTemplate));
                 appendSetFixtures($("<script>", { id: "system-feedback-tpl", type: "text/template" }).text(feedbackTemplate));
                 model = new XBlockInfo({
                     id: 'testCourse/branch/published/block/verticalFFF',
@@ -65,10 +67,10 @@ define(["jquery", "underscore", "js/spec/create_sinon", "js/views/modals/edit_xb
                     expect(modal.$('.wrapper-modal-window')).not.toHaveClass('is-shown');
                 });
 
-                it('does not show the mode toggle buttons', function() {
+                it('does not show any editor mode buttons', function() {
                     var requests = create_sinon.requests(this);
                     modal = showModal(requests, mockXBlockEditorHtml);
-                    expect(modal.$('.modal-modes')).toHaveClass('is-hidden');
+                    expect(modal.$('.editor-modes a').length).toBe(0);
                     cancelModal(modal);
                 });
             });
@@ -102,6 +104,21 @@ define(["jquery", "underscore", "js/spec/create_sinon", "js/views/modals/edit_xb
                     expect(modal.$('.wrapper-modal-window')).toHaveClass('is-shown');
                     cancelModal(modal);
                     expect(modal.$('.wrapper-modal-window')).not.toHaveClass('is-shown');
+                });
+
+                it('shows the correct default buttons', function() {
+                    var requests = create_sinon.requests(this),
+                        editorButton,
+                        settingsButton;
+                    modal = showModal(requests, mockXModuleEditorHtml);
+                    expect(modal.$('.editor-modes a').length).toBe(2);
+                    editorButton = modal.$('.editor-button');
+                    settingsButton = modal.$('.settings-button');
+                    expect(editorButton.length).toBe(1);
+                    expect(editorButton).toHaveClass('is-set');
+                    expect(settingsButton.length).toBe(1);
+                    expect(settingsButton).not.toHaveClass('is-set');
+                    cancelModal(modal);
                 });
             });
         });

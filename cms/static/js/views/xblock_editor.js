@@ -142,18 +142,20 @@ define(["jquery", "underscore", "gettext", "js/views/feedback_notification", "js
 
             selectMode: function(mode) {
                 var showEditor = mode === 'editor',
-                    dataEditor,
-                    settingsEditor;
-                dataEditor = this.$('.wrapper-comp-editor');
-                settingsEditor = this.$('.wrapper-comp-settings');
-                if (showEditor) {
-                    dataEditor.removeClass('is-inactive');
-                    settingsEditor.removeClass('is-active');
-                } else {
-                    dataEditor.addClass('is-inactive');
-                    settingsEditor.addClass('is-active');
+                    dataEditor = this.getDataEditor(),
+                    metadataEditor = this.getMetadataEditor();
+                if (dataEditor) {
+                    this.setEditorActivation(dataEditor, showEditor);
+                }
+                if (metadataEditor) {
+                    this.setEditorActivation(metadataEditor.$el, !showEditor);
                 }
                 this.mode = mode;
+            },
+
+            setEditorActivation: function(editor, isActive) {
+                editor.removeClass('is-active').removeClass('is-inactive');
+                editor.addClass(isActive ? 'is-active' : 'is-inactive');
             }
         });
 

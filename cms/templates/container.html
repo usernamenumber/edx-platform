@@ -2,6 +2,7 @@
 <%!
 import json
 
+from contentstore.utils import PublishState
 from contentstore.views.helpers import xblock_studio_url
 from django.utils.translation import ugettext as _
 %>
@@ -13,7 +14,7 @@ from django.utils.translation import ugettext as _
 
 
 <%block name="header_extras">
-% for template_name in ["edit-xblock-modal"]:
+% for template_name in ["edit-xblock-modal", "editor-mode-button"]:
 <script type="text/template" id="${template_name}-tpl">
     <%static:include path="js/${template_name}.underscore" />
 </script>
@@ -69,9 +70,6 @@ main_xblock_info = {
         <nav class="nav-actions">
             <h3 class="sr">${_("Page Actions")}</h3>
             <ul>
-                <li class="nav-item">
-                    <a href="#" class="button edit-button"><i class="icon-edit"></i> ${_("Edit")}</a>
-                </li>
             </ul>
         </nav>
     </header>
@@ -95,12 +93,22 @@ main_xblock_info = {
                 % if unit:
                 <div class="bit-publishing">
                     <h3 class="title-3">${_("Publishing Status")}</h3>
-                    <p class="copy">${_('This content is published with unit {unit_name}. To edit the components on this page, you need to set {unit_name} in draft mode.').format(
-                        unit_name=u'<a href="{unit_address}">{unit_display_name}</a>'.format(
+                    <p class="copy">
+                        <%
+                        unit_link=u'<a href="{unit_address}">{unit_display_name}</a>'.format(
                             unit_address=xblock_studio_url(unit),
                             unit_display_name=unit.display_name_with_default,
                         )
-                    )}</p>
+                        %>
+                        ${_('This content is published with unit {unit_link}.').format(unit_link=unit_link)}
+                        % if unit_publish_state == PublishState.public:
+                            ${_('To edit the components on this page, you need to set {unit_link} in draft mode.'
+                                ).format(unit_link=unit_link)}
+                        % else:
+                            ${_('Say something useful about {unit_link} being in draft or private mode.'
+                                ).format(unit_link=unit_link)}
+                        % endif
+                    </p>
                 </div>
                 % endif
                 <div class="bit">

@@ -1,7 +1,6 @@
 from __future__ import absolute_import
 
 import logging
-import hashlib
 from functools import partial
 
 from django.conf import settings
@@ -170,8 +169,7 @@ def _studio_wrap_xblock(xblock, view, frag, context, display_name_only=False):
     """
     # Only add the Studio wrapper when on the container page. The unit page will remain as is for now.
     if context.get('container_view', None) and view == 'student_view':
-        published = not context['is_draft']
-        locator = loc_mapper().translate_location(xblock.course_id, xblock.location, published=published)
+        locator = loc_mapper().translate_location(xblock.course_id, xblock.location, published=False)
         template_context = {
             'xblock_context': context,
             'xblock': xblock,

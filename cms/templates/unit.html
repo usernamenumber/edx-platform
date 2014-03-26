@@ -10,7 +10,7 @@ from xmodule.modulestore.django import loc_mapper
 <%block name="bodyclass">is-signedin course unit view-unit</%block>
 
 <%block name="header_extras">
-% for template_name in ["image-modal", "edit-xblock-modal"]:
+% for template_name in ["image-modal", "edit-xblock-modal", "editor-mode-button"]:
 <script type="text/template" id="${template_name}-tpl">
     <%static:include path="js/${template_name}.underscore" />
 </script>

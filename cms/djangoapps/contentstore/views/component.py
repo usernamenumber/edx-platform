@@ -317,6 +317,8 @@ def container_handler(request, tag=None, package_id=None, branch=None, version_g
         while parent and parent.category != 'sequential':
             ancestor_xblocks.append(parent)
             parent = get_parent_xblock(parent)
+        unit = None if not ancestor_xblocks else ancestor_xblocks[0]
+        unit_publish_state = None if not unit else compute_publish_state(unit)
 
         ancestor_xblocks.reverse()
 
@@ -324,7 +326,8 @@ def container_handler(request, tag=None, package_id=None, branch=None, version_g
             'context_course': course,
             'xblock': xblock,
             'xblock_locator': locator,
-            'unit': None if not ancestor_xblocks else ancestor_xblocks[0],
+            'unit': unit,
+            'unit_publish_state': unit_publish_state,
             'ancestor_xblocks': ancestor_xblocks,
         })
     else:
