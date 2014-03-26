@@ -67,7 +67,7 @@ def change_date(_step, new_date):
     for i in range(len(date.value)):
         date._element.send_keys(Keys.END, Keys.BACK_SPACE)
     date._element.send_keys(new_date)
-    save_css = 'a.save-button'
+    save_css = 'a.action-save'
     world.css_click(save_css)
 
 
@@ -98,7 +98,7 @@ def check_handout_error(_step):
 
 @step(u'I see handout save button disabled')
 def check_handout_error(_step):
-    handout_save_button = 'form.edit-handouts-form a.save-button'
+    handout_save_button = 'form.edit-handouts-form a.action-save'
     assert world.css_has_class(handout_save_button, 'is-disabled')
 
 
@@ -109,19 +109,19 @@ def edit_handouts(_step, text):
 
 @step(u'I see handout save button re-enabled')
 def check_handout_error(_step):
-    handout_save_button = 'form.edit-handouts-form a.save-button'
+    handout_save_button = 'form.edit-handouts-form a.action-save'
     assert not world.css_has_class(handout_save_button, 'is-disabled')
 
 
 @step(u'I save handout edit')
 def check_handout_error(_step):
-    save_css = 'a.save-button'
+    save_css = 'a.action-save'
     world.css_click(save_css)
 
 
 def change_text(text):
     type_in_codemirror(0, text)
-    save_css = 'a.save-button'
+    save_css = 'a.action-save'
     world.css_click(save_css)
 
 
