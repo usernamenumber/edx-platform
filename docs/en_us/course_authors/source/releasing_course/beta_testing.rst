@@ -13,6 +13,7 @@ Beta testers have early access to the course. Beta testers are not members of th
 * :ref:`What_Test`
 * :ref:`How_Testers_See_Course`
 * :ref:`Add_Testers`
+* :ref:`Add_Testers_Bulk`
 * :ref:`Issue_Reporting_During_Course`
 
 .. _Beta_Process:
@@ -167,7 +168,7 @@ In this example, the beta testers cannot access all of the courseware when the b
 .. _Add_Testers:
 
 *********************************
-Add the Beta Testers
+Add Individual Beta Testers 
 *********************************
 
 Before you can add beta testers:
@@ -178,7 +179,7 @@ Before you can add beta testers:
 
 **Note**: If the beta test starts before the **Enrollment Start Date**, testers cannot enroll themselves. To streamline this process, ask the beta testers to register and activate their accounts. Then, you can enroll the beta testers and select the **Auto Enroll** and **Notify students by email** options. See :ref:`Enrollment`.
 
-To add a beta tester:
+To add a single beta tester:
 
 #. View the live version of your course.
 
@@ -195,6 +196,38 @@ To add a beta tester:
   * If you add beta testers before the test starts, they do not see your course. You may need to remind them when the test begins. 
 
 To remove the Beta Testers role, view the list of beta testers and then click **Revoke access**. 
+
+.. _Add_Testers_Bulk:
+
+*********************************
+Add Multiple Beta Testers
+*********************************
+
+If you have a number of beta testers that you want to add, you can use a "batch add" option to add them all at once, rather than indivudally. To use this feature:
+
+* You need the email address of each beta tester. 
+
+* Each beta tester must register a user account for that email address and username, activate the account, and be enrolled in your course. 
+
+**Note**: If the beta test starts before the **Enrollment Start Date**, testers cannot enroll themselves. To streamline this process, ask the beta testers to register and activate their accounts. Then, you can enroll the beta testers and select the **Auto Enroll** and **Notify students by email** options. See :ref:`Enrollment`.
+
+To add multiple beta testers:
+
+#. View the live version of your course.
+
+#. Click **Instructor** then **Try New Beta Dashboard**.
+
+#. Click **Membership**. 
+
+#. In the Batch Add Beta Testers section of the page, enter one or more addresses separated by commas or line feeds (the Return key). You can also copy data from a CSV file of email addresses and paste it here. 
+
+#. Click **Add Beta Testers**.
+
+  * If you add beta testers after the defined start of the beta test, they see your course on their dashboards when they log in. 
+
+  * If you add beta testers before the test starts, they do not see your course. You may need to remind them when the test begins. 
+
+To remove the Beta Testers role, view the list of beta testers in the Administration List Management section of the page and then click **Revoke access**. 
 
 .. _Issue_Reporting_During_Course:
 
