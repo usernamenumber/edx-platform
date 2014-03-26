@@ -1,9 +1,9 @@
-define([ "jquery", "js/spec/create_sinon", "URI", "js/views/xblock_editor", "js/models/xblock_info",
+define(["jquery", "underscore", "js/spec/create_sinon", "js/views/modals/edit_xblock", "js/models/xblock_info",
         "xmodule", "coffee/src/main", "xblock/cms.runtime.v1"],
-    function ($, create_sinon, URI, XBlockEditorView, XBlockInfo) {
+    function ($, _, create_sinon, EditXBlockModal, XBlockInfo) {
 
-        describe("XBlockEditorView", function() {
-            var model, editor, respondWithMockXBlockEditorFragment;
+        describe("EditXBlockModal", function() {
+            var model, modal, respondWithMockXBlockEditorFragment;
 
             beforeEach(function () {
                 model = new XBlockInfo({
@@ -11,9 +11,7 @@ define([ "jquery", "js/spec/create_sinon", "URI", "js/views/xblock_editor", "js/
                     display_name: 'Test Unit',
                     category: 'vertical'
                 });
-                editor = new XBlockEditorView({
-                    model: model
-                });
+                modal = new EditXBlockModal({});
             });
 
             respondWithMockXBlockEditorFragment = function(requests, response) {
@@ -22,7 +20,7 @@ define([ "jquery", "js/spec/create_sinon", "URI", "js/views/xblock_editor", "js/
             };
 
             describe("Editing an xblock", function() {
-                var mockXBlockEditorHtml;
+                var mockXBlockEditorHtml, editXBlockModalTemplate;
 
                 beforeEach(function () {
                     window.MockXBlock = function(runtime, element) {
@@ -35,17 +33,25 @@ define([ "jquery", "js/spec/create_sinon", "URI", "js/views/xblock_editor", "js/
                 });
 
                 mockXBlockEditorHtml = readFixtures('mock/mock-xblock-editor.underscore');
+                editXBlockModalTemplate = readFixtures('edit-xblock-modal.underscore');
 
                 it('can render itself', function() {
-                    var requests = create_sinon.requests(this);
-                    editor.render();
+                    var requests, xblockElement, cancelButton;
+                    requests = create_sinon.requests(this);
+                    setFixtures('<div class="xblock" data-locator="mock-xblock" data-display-name="Mock XBlock"></div>');
+                    appendSetFixtures($("<script>", { id: "edit-xblock-modal-tpl", type: "text/template" }).text(editXBlockModalTemplate));
+                    xblockElement = $('.xblock');
+                    modal.edit(xblockElement, model);
+
                     respondWithMockXBlockEditorFragment(requests, {
                         html: mockXBlockEditorHtml,
                         "resources": []
                     });
-
-                    expect(editor.$el.select('.xblock-header')).toBeTruthy();
-                    expect(editor.getMode()).toEqual('editor');
+                    expect(modal.$('.wrapper-modal-window')).toHaveClass('is-shown');
+                    cancelButton = xblockElement.select('.action-cancel');
+                    expect(cancelButton.length).toBe(1);
+                    cancelButton.click();
+                    expect(modal.$('.wrapper-modal-window')).not.toHaveClass('is-shown');
                 });
             });
 

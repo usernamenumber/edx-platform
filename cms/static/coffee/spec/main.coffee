@@ -215,11 +215,13 @@ define([
     "js/spec/views/baseview_spec",
     "js/spec/views/paging_spec",
 
-    "js/spec/views/unit_spec"
-    "js/spec/views/xblock_spec"
-    "js/spec/views/xblock_editor_spec"
+    "js/spec/views/unit_spec",
+    "js/spec/views/xblock_spec",
+    "js/spec/views/xblock_container_spec",
+    "js/spec/views/xblock_editor_spec",
 
     "js/spec/views/modals/base_modal_spec",
+    "js/spec/views/modals/edit_xblock_spec",
 
     # these tests are run separately in the cms-squire suite, due to process
     # isolation issues with Squire.js
