@@ -449,7 +449,7 @@ By default, your course has the following pages:
 * Wiki
 * Progress
 
-You cannot rename, reorder, or remove these pages.
+You cannot rename these pages.
 
 You can add pages to your course. Each page appears in your course's navigation bar. 
 
@@ -467,7 +467,33 @@ You can create other pages for the grading policy, course slides, or any other p
 
 * An instant hangout.  See :ref:`Using an Instant Hangout in Your Course` for more information.
 
-To create a page:
+.. note:: Textbooks that you add to the course are also displayed in the Pages list, and in the navigation bar in your course.  See :ref:`Add Textbooks` for information about textbooks.
+
+===================================
+Show or Hide the Course Wiki Page
+===================================
+
+By default, your course includes a Wiki. Students and course staff can use the Wiki to post content and comment on others' content.
+
+If you do not want to use the Wiki in your course, you can hide it.
+
+The eye icon in the Wiki object indicates that the Wiki is visible in your course:
+
+.. image:: ../Images/pages_wiki_on.png
+ :alt: Image of the Pages page with the Wiki made visible
+
+Click the eye icon to hide the Wiki. The icon changes:
+
+.. image:: ../Images/pages_wiki_off.png
+ :alt: Image of the Pages page with the Wiki made visible
+
+Click it again to make the Wiki visible.
+
+.. note:: Content remains in the Wiki when you hide it. For example, you could hide the Wiki during an exam. After the exam, you could make the Wiki visible again. The content that was previously posted will be available.
+
+==================
+Add Pages
+==================
 
 #. From the **Content** menu, select **Pages**. 
 
@@ -499,7 +525,7 @@ You can reorder pages in your course by dragging and dropping the pages to diffe
 
 To move a page, hover over the element handle on the right side of the page row until the mouse pointer changes to a four-headed arrow. Then, click and drag the page to the location that you want.
 
-.. note:: You cannot reorder the Courseware, Course Info, Discussion, Wiki, and Progress pages that your course includes by default
+.. note:: You cannot reorder the Courseware or Course Info page.
 
 ==================
 Delete a Page
