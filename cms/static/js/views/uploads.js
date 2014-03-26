@@ -51,13 +51,13 @@ var UploadDialog = BaseModal.extend({
     show: function(e) {
         if(e && e.preventDefault) { e.preventDefault(); }
         this.options.shown = true;
-        $("body").addClass('dialog-is-shown');
+        $("body").addClass('modal-window-is-shown');
         return this.render();
     },
     hide: function(e) {
         if(e && e.preventDefault) { e.preventDefault(); }
         this.options.shown = false;
-        $("body").removeClass('dialog-is-shown');
+        $("body").removeClass('modal-window-is-shown');
         return this.render();
     },
     hideAndRemove: function(e) {

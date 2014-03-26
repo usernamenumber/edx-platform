@@ -54,17 +54,28 @@
       }
 
       .message {
-        @extend %t-copy-sub2;
+        @extend %t-copy-sub1;
+        margin: $baseline 0;
         color: $gray;
-      }
 
-      .error {
+        &.error {
+          border: 0;
+          border-top: 3px solid $red-d2;
+          background-color: $red;
+          color: $white;
+        }
 
+        &.success {
+          border: 0;
+          border-top: 3px solid $green-d2;
+          background-color: $green;
+          color: $white;
+        }
       }
 
       .modal-chin,
       .modal-actions {
-        padding: ($baseline*0.75) 1% ($baseline/2) 1%;
+        padding: ($baseline*0.75) 2% ($baseline/2) 2%;
 
         .action-item {
           @extend %t-action3;
@@ -98,12 +109,20 @@
     .modal-sm {
       width: 30%;
       min-width: ($baseline*15);
+
+      .modal-content {
+        padding: 5% 4%;
+      }
     }
 
     // medium modals - forms and interactives
     .modal-med {
       width: 40%;
       min-width: ($baseline*18);
+
+      .modal-content {
+        padding: 4%;
+      }
     }
 
     // large modals - component editors and interactives
@@ -156,67 +175,6 @@
 
         .modal-content {
           padding: 0;
-        }
-
-      }
-    }
-
-
-
-
-
-
-
-
-    form {
-      padding: 0;
-
-      .form-content {
-        box-shadow: 0 0 3px $shadow-d1;
-        padding: ($baseline*1.5);
-        background-color: $white;
-      }
-
-      .field {
-        margin-bottom: ($baseline/2);
-      }
-
-      label {
-        @include font-size(14);
-        display: block;
-        font-weight: bold;
-      }
-
-      input[type="text"] {
-        @extend %t-copy-sub2;
-      }
-
-      .actions {
-        padding: ($baseline*0.75) 5% ($baseline/2) 5%;
-
-        .action-item {
-          @extend %t-action4;
-          display: inline-block;
-          margin-right: ($baseline*0.75);
-
-          &:last-child {
-            margin-right: 0;
-          }
-        }
-
-        .action-primary {
-          @include blue-button();
-          @include font-size(12); // needed due to bad button mixins for now
-          border-color: $blue-d1;
-          color: $white;
-        }
-
-        a {
-          color: $blue;
-
-          &:hover {
-            color: $blue-s2;
-          }
         }
       }
     }
