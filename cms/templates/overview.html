@@ -7,7 +7,7 @@
   from xmodule.modulestore.django import loc_mapper
 %>
 <%block name="title">${_("Course Outline")}</%block>
-<%block name="bodyclass">is-signedin course view-outline feature-edit-dialog</%block>
+<%block name="bodyclass">is-signedin course view-outline</%block>
 
 <%namespace name='static' file='static_content.html'/>
 <%namespace name="units" file="widgets/units.html" />
@@ -277,12 +277,12 @@ require(["domReady!", "jquery", "js/models/location", "js/models/section", "js/v
   <footer></footer>
 
   <div
-    class="wrapper wrapper-dialog wrapper-dialog-edit-sectionrelease edit-section-publish-settings"
+    class="wrapper wrapper-modal-window wrapper-dialog-edit-sectionrelease edit-section-publish-settings"
     aria-describedby="dialog-edit-sectionrelease-description"
     aria-labelledby="dialog-edit-sectionrelease-title"
     aria-hidden=""
     role="dialog">
-    <div class="dialog confirm">
+    <div class="modal-window modal-med confirm">
       <form class="edit-sectionrelease-dialog" action="#">
         <div class="form-content">
           <h2 class="title dialog-edit-sectionrelease-title">${_("Section Release Date")}</h2>

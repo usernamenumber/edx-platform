@@ -34,7 +34,6 @@
       top: 50%;
       left: 50%;
       width: 50%;
-      height: 40%;
       box-shadow: 0px 0px 7px $shadow-d1;
       border-radius: ($baseline/5);
       background-color: $gray-l4;
@@ -97,14 +96,14 @@
 
     // small modals - editors and dialogs
     .modal-sm {
-      width: 35%;
-      min-width: ($baseline*12.5);
+      width: 30%;
+      min-width: ($baseline*15);
     }
 
     // medium modals - forms and interactives
     .modal-med {
-      width: 50%;
-      min-width: ($baseline*15);
+      width: 40%;
+      min-width: ($baseline*18);
     }
 
     // large modals - component editors and interactives
