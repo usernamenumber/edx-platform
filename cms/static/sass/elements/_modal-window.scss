@@ -68,7 +68,7 @@
         padding: ($baseline*0.75) 1% ($baseline/2) 1%;
 
         .action-item {
-          @extend %t-action4;
+          @extend %t-action3;
           display: inline-block;
           margin-right: ($baseline*0.75);
 
@@ -79,7 +79,7 @@
 
         .action-primary {
           @include blue-button();
-          @include font-size(12); // needed due to bad button mixins for now
+          @include font-size(14); // needed due to bad button mixins for now
           border-color: $blue-d1;
           color: $white;
         }
@@ -242,63 +242,73 @@
 
 
   // special overrides for video module editor/hidden tab editors
-  .xmodule_edit.xmodule_VideoDescriptor .editor-with-tabs {
+  .wrapper-modal-window .modal-type-video {
 
-    .edit-header {
-      border: 0;
-      background-color: $gray-l4;
-      padding: ($baseline/2);
+    .modal-content {
+      box-shadow: none;
+    }
 
-      .component-name {
-        @extend %t-title5;
-        display: inline-block;
-        vertical-align: middle;
-        width: 48%;
-        margin-left: ($baseline/2);
-        font-weight: 600;
-        color: $black;
+    .xmodule_edit.xmodule_VideoDescriptor .editor-with-tabs {
 
-        em {
-          color: inherit;
-          display: inline;
+      .edit-header {
+        border: 0;
+        background-color: $gray-l4;
+        padding: ($baseline/2);
+
+        .component-name {
+          @extend %t-title5;
+          display: inline-block;
+          vertical-align: middle;
+          width: 48%;
+          margin-left: ($baseline/2);
+          font-weight: 600;
+          color: $black;
+
+          em {
+            color: inherit;
+            display: inline;
+          }
         }
-      }
 
-      .editor-tabs {
-        display: inline-block;
-        width: 48%;
-        position: relative;
-        top: auto;
-        right: auto;
-        padding: 0;
-        text-align: right;
-
-        .inner_tab_wrap {
+        .editor-tabs {
+          display: inline-block;
+          width: 48%;
+          position: relative;
+          top: auto;
+          right: auto;
           padding: 0;
+          text-align: right;
 
-          a.tab {
-            @extend %btn-secondary-gray;
-            @extend %t-copy-sub1;
-            background-image: none;
-            box-shadow: none;
-            border: 0;
-            padding: ($baseline/4) ($baseline/2);
-            text-transform: uppercase;
-            font-weight: normal;
+          .inner_tab_wrap {
+            padding: 0;
 
-            &.current {
-              background-color: $gray-d1;
-              color: $white;
+            a.tab {
+              @extend %btn-secondary-gray;
+              @extend %t-copy-sub1;
+              background-image: none;
+              box-shadow: none;
+              border: 0;
+              padding: ($baseline/4) ($baseline/2);
+              text-transform: uppercase;
+              font-weight: normal;
+
+              &.current {
+                background-color: $gray-d1;
+                color: $white;
+              }
             }
           }
         }
       }
-    }
 
-    .component-tab {
-      border-top: 1px solid $gray-l3;
-    }
+      .tabs-wrapper {
+        box-shadow: 0 0 3px $shadow-d1;
 
+        .component-tab {
+          border-top: 1px solid $gray-l3;
+        }
+      }
+    }
   }
 
 
