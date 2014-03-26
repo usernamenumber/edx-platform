@@ -3,10 +3,9 @@ define(["jquery", "underscore", "js/spec/create_sinon", "js/views/modals/edit_xb
     function ($, _, create_sinon, EditXBlockModal, XBlockInfo) {
 
         describe("EditXBlockModal", function() {
-            var model, modal, respondWithMockXBlockEditorFragment, mockXBlockEditorHtml, editXBlockModalTemplate,
+            var model, modal, respondWithMockXBlockEditorFragment, editXBlockModalTemplate,
                 feedbackTemplate, showModal, cancelModal;
 
-            mockXBlockEditorHtml = readFixtures('mock/mock-xblock-editor.underscore');
             editXBlockModalTemplate = readFixtures('edit-xblock-modal.underscore');
             feedbackTemplate = readFixtures('system-feedback.underscore');
 
@@ -26,12 +25,12 @@ define(["jquery", "underscore", "js/spec/create_sinon", "js/views/modals/edit_xb
                 create_sinon.respondWithJson(requests, response, requestIndex);
             };
 
-            showModal = function(requests) {
+            showModal = function(requests, mockHtml) {
                 var modal = new EditXBlockModal({}),
                     xblockElement = $('.xblock');
                 modal.edit(xblockElement, model);
                 respondWithMockXBlockEditorFragment(requests, {
-                    html: mockXBlockEditorHtml,
+                    html: mockHtml,
                     "resources": []
                 });
                 return modal;
@@ -44,6 +43,10 @@ define(["jquery", "underscore", "js/spec/create_sinon", "js/views/modals/edit_xb
             };
 
             describe("Editing an xblock", function() {
+                var mockXBlockEditorHtml;
+
+                mockXBlockEditorHtml = readFixtures('mock/mock-xblock-editor.underscore');
+
                 beforeEach(function () {
                     window.MockXBlock = function(runtime, element) {
                         return { };
@@ -56,24 +59,24 @@ define(["jquery", "underscore", "js/spec/create_sinon", "js/views/modals/edit_xb
 
                 it('can show itself', function() {
                     var requests = create_sinon.requests(this);
-                    modal = showModal(requests);
+                    modal = showModal(requests, mockXBlockEditorHtml);
                     expect(modal.$('.wrapper-modal-window')).toHaveClass('is-shown');
                     cancelModal(modal);
                     expect(modal.$('.wrapper-modal-window')).not.toHaveClass('is-shown');
                 });
 
-                it('does not show a "Settings" button', function() {
+                it('does not show the mode toggle buttons', function() {
                     var requests = create_sinon.requests(this);
-                    modal = showModal(requests);
-                    expect(modal.$('.wrapper-modal-window')).toHaveClass('is-shown');
+                    modal = showModal(requests, mockXBlockEditorHtml);
+                    expect(modal.$('.modal-modes')).toHaveClass('is-hidden');
                     cancelModal(modal);
-                    expect(modal.$('.wrapper-modal-window')).not.toHaveClass('is-shown');
                 });
             });
 
             describe("Editing an xmodule", function() {
-                var editorTemplate, stringEntryTemplate, numberEntryTemplate;
+                var mockXModuleEditorHtml, editorTemplate, stringEntryTemplate, numberEntryTemplate;
 
+                mockXModuleEditorHtml = readFixtures('mock/mock-xmodule-editor.underscore');
                 editorTemplate = readFixtures('metadata-editor.underscore');
                 numberEntryTemplate = readFixtures('metadata-number-entry.underscore');
                 stringEntryTemplate = readFixtures('metadata-string-entry.underscore');
@@ -95,7 +98,7 @@ define(["jquery", "underscore", "js/spec/create_sinon", "js/views/modals/edit_xb
                     var requests = create_sinon.requests(this);
 
                     // Show the modal using a mock xblock response
-                    modal = showModal(requests);
+                    modal = showModal(requests, mockXModuleEditorHtml);
                     expect(modal.$('.wrapper-modal-window')).toHaveClass('is-shown');
                     cancelModal(modal);
                     expect(modal.$('.wrapper-modal-window')).not.toHaveClass('is-shown');
