@@ -107,13 +107,13 @@ def click_component_from_menu(category, component_type, is_advanced):
 def edit_component_and_select_settings():
     world.wait_for(lambda _driver: world.css_visible('a.edit-button'))
     world.css_click('a.edit-button')
-    world.css_click('#settings-mode a')
+    world.css_click('.settings-button')
 
 
 @world.absorb
 def edit_component():
     world.wait_for(lambda _driver: world.css_visible('a.edit-button'))
-    world.css_click('a.edit-button')
+    world.css_click('.editor-button')
 
 
 def enter_xml_in_advanced_problem(step, text):
