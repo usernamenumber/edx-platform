@@ -15,6 +15,9 @@ import json
 import logging
 from operator import itemgetter
 
+from celery import task
+from celery.contrib import rdb
+
 from lxml import etree
 from pkg_resources import resource_string
 import datetime
@@ -303,6 +306,8 @@ class VideoModule(VideoFields, XModule):
 
         # OrderedDict for easy testing of rendered context in tests
         sorted_languages = OrderedDict(sorted(languages.items(), key=itemgetter(1)))
+
+        # rdb.set_trace()  # <- set breakpoint
 
         return self.system.render_template('video.html', {
             'ajax_url': self.system.ajax_url + '/save_user_state',

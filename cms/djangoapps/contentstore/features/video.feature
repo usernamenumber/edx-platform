@@ -4,6 +4,7 @@ Feature: CMS Video Component
 
   # 1
   Scenario: Autoplay is disabled in Studio
+    Given youtube server is up and proxies YouTube API
     Given I have created a Video component
     Then when I view the video it does not have autoplay enabled
 

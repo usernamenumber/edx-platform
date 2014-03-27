@@ -2,11 +2,15 @@
 Stub implementation of YouTube for acceptance tests.
 """
 
+from celery import task
+from celery.contrib import rdb
+
 from .http import StubHttpRequestHandler, StubHttpService
 import json
 import time
 from urlparse import urlparse
 from collections import OrderedDict
+from django.conf import settings
 
 
 class StubYouTubeHandler(StubHttpRequestHandler):
@@ -25,6 +29,8 @@ class StubYouTubeHandler(StubHttpRequestHandler):
         self.log_message(
             "Youtube provider received GET request to path {}".format(self.path)
         )
+
+        # rdb.set_trace()  # <- set breakpoint
 
         if 'test_transcripts_youtube' in self.path:
 
@@ -59,6 +65,13 @@ class StubYouTubeHandler(StubHttpRequestHandler):
             youtube_id = params.path.split('/').pop()
 
             self._send_video_response(youtube_id, "I'm youtube.")
+
+        elif 'get_youtube_api' in self.path:
+            if self.server.config.get('youtube_api_blocked'):
+                self.send_response(404, content='Unused url', headers={'Content-type': 'text/plain'})
+            else:
+                response = requests.get(settings.YOUTUBE['API'])
+                self.send_response(200, content=response, headers={'Content-type': 'text/html'})
 
         else:
             self.send_response(

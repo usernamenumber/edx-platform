@@ -146,6 +146,8 @@ function (VideoPlayer, VideoStorage) {
     }
 
     function _loadYoutubeApi(state) {
+        var script;
+
         console.log('[Video info]: YouTube API is not loaded. Will try to load...');
 
         window.setTimeout(function () {
@@ -156,7 +158,10 @@ function (VideoPlayer, VideoStorage) {
             _reportToServer(state, state.youtubeApiAvailable);
         }, state.config.ytTestTimeout);
 
-        $.getScript(document.location.protocol + '//' + state.config.ytApiUrl);
+        // $.getScript(document.location.protocol + '//' + state.config.ytApiUrl);
+        script = document.createElement('script');
+        script.src = document.location.protocol + '//' + state.config.ytApiUrl;
+        document.write(script.outerHTML);
     }
 
     function _reportToServer(state, youtubeIsAvailable) {

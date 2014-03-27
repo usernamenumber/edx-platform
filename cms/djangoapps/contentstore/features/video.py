@@ -21,6 +21,11 @@ SELECTORS = {
 DELAY = 0.5
 
 
+@step('youtube server is up and proxies YouTube API$')
+def set_real_youtube_api(_step):
+    world.youtube.config['youtube_api_blocked'] = False
+
+
 @step('I have created a Video component$')
 def i_created_a_video_component(step):
     world.create_course_with_unit()
